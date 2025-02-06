@@ -71,11 +71,14 @@ int PeasantMultiply(int x,int y){
 x.y = |  ceil(x/2)(2y)      if x is even
       |  ceil(x/2)(2y) + y  if x is odd
 **Running Time**: 
-T(n)=T(n-1)+O(n)
-T(n)<=T(1)+cn+c(n-1)+c(n-2)+....+c(1)
-T(n)<= c'(n(n-1)/2)
+```
+ T(n)=T(n-1)+O(n)
+ T(n)<=T(1)+cn+c(n-1)+c(n-2)+....+c(1)
+ T(n)<= c'(n(n-1)/2)
+```
 -So the running time will be O(n^2)
 **Tightness**   : The algorithm is tight enough (observed in RT analysis)
+
 
 
 
