@@ -21,20 +21,14 @@ Algorithm is explicit,unambigous,mechanichally-executable sequence of elementary
           C ditches S2 //S2 is not alloted to any course now
           C acceptes S
   ```
-| C0 | C1 | C2 |              
-|----|----|----|       
-| S0 | S1 | C1 |      
-|----|----|----|      
-| S1 | S0 | C1 |       
-|----|----|----|       
+| C0 | C1 | C2 |                   
+| S0 | S1 | C1 |       
+| S1 | S0 | C1 |      
 | S2 | S2 | C1 | 
 
-| S0 | S1 | S2 |
-|----|----|----|   
+| S0 | S1 | S2 |   
 | C1 | C0 | C0 |
-|----|----|----| 
 | C0 | C1 | C1 |
-|----|----|----|
 | C2 | C2 | C2 |
 
 - Let's go through this example
