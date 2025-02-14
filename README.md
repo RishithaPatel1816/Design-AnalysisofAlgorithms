@@ -132,7 +132,89 @@ int SM(int x,int y,int n){
 1. If f(n)=O(n<sup>log<sub>b</sub>a+ε</sup>)  -> T(n) = n<sup>log<sub>b</sub>a</sup>      
 2. If f(n)=0(n<sup>log<sub>b</sub>a</sup>log<sup>k</sup>) ->T(n) = n<sup>log<sub>b</sub>a</sup>log<sup>k+1</sup>    
 3. If f(n)=&Omega;(n<sup>log<sub>b</sub>a-ε</sup>)  -> T(n) = f(n)
-       
+
+![image](https://github.com/user-attachments/assets/907e7b89-60e7-4121-9e06-8304f8ed8121)
+
+## SORTING ALGORITHMS
+- **Merge Sort** takes O(nlogn) it has recurrence relation T(n) = 2T(n/2)+O(n)
+```Pseudo Code
+#Base case
+mergeSort(arr)
+if arr has less number of elements (like 5-8)
+  sort them
+divide the array into two parts
+mergeSort(first half)
+mergesSort(2nd half)
+Merge them into one array i.e in O(n) time
+```
+#### Quick Select:
+1. Choose a pivot in the array let's say p
+2. Partition them into two parts where first part contains the elements less than p and second one contains the bigger ones.
+3. Recursively sort the array
+- Worst case our chose pivot can be the first or last one 🥲
+- So Quicksort has T(n)=O(n<sup>2</sup>)
+- T(n)=T(r-1)+T(n-r)+O(n)
+- WC: T(n)=T(n-1)+T(0)+O(n) i.e. T(n)=O(n<sup>2</sup>)
+- To reduce this complexity we can do one thing
+- Instead of having worst case with 1st element as pivot if we can choose the median of the element in O(n) time then we can have quicksort algo in O(nlogn)
+## Divide and Conquer Strategy
+- Divide the problem into instances of the same problem of smaller size.
+- Recursively solve all the subproblems.
+- Combine the solutions of subproblems to get the solution for original problem.
+##### QuickSelect for finding median
+- Given array of n elements we should find the kth smallest number(number with rank as k)
+- So we will do partition and give the ranks and if k<r we will go into 1st oart else the second else return value we got
+- But this also turns out to be O(n<sup>2</sup>)
+- Lest's see the pseudo code for it first:
+  ```
+  QuickSelect(arr,k)
+    choose a pivot p
+    partition them into two parts (A[1,2,.,.,,r-1] and A[r+1,r+2,...,.,n-1])
+    if(k<r)
+      QuickSelect(A[1,2,.,.,,r-1],k)
+    else if(k>r)
+    QuickSelect(A[r+1,r+2,r+3,.,.,n-1],k-r)  #k-r coz alreday r elements we know that are lower than k
+    else
+      return k
+  ```
+- Though it is better than previous algorithm since it should go to only once rather than two but still the worst case remains the same.
+- T(n) = max{T(n-r,T(r-1}+O(n)
+- T(n) = T(n-1)+O(n)
+- T(n) = O(n<sup>2</sup>) 😐
+- Think something different
+- So instead of finding median if we are able to find some offset like..pivot is atleast greater than kn (k<1) then running time may reduce
+#### MOMSelect
+- **Idea** :
+- Divide the array into n/5 blocks find median of each block and then make it as array m 
+- Find the median of this median M `O(n/5)`
+- Now MOMSelect using the pivot we have obtained
+- Compare r and k and go to the part where k will be there  `O(7n/10)`
+```Pseudo Code
+  MOMSelect(arr,k)
+    if arr<18
+      sort and find median
+    else
+      m = floor (n/5)
+      find median of all n/5 blocks store it in array M
+      mom =  MOMSelect(M,m/2)
+      r = partition(arr,mom)
+      if(k<r)
+        MOMSelect(arr[1,2,.,.r),k)
+      else if(k>r)
+        MOMSelect(arr[r+1,r+2,.,.,.n-1],k-r)
+      else
+        return k
+```
+- **Observation** : mom > atleast n/10 (as it is median of all n/5 block medians
+- And each of them is 3rd greatest number hence mom > 3n/10 and similarly mom < 3n/10
+- T(n) = T(n/5) + T(7n/10) + O(n)
+- n/5 for find median of the medians
+- 7n/10 is worst case of pivot
+- Similar to before but helps in choosing pivot wisely.
+  
+  ![WhatsApp Image 2025-02-14 at 18 22 49_51cc907e](https://github.com/user-attachments/assets/19a09f07-cd4f-45e5-98a1-fba6d2102811)
+
+  
 
 
 
