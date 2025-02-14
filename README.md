@@ -106,7 +106,69 @@ int SM(int x,int y,int n){
 - T(n) <= c'n<sup>2</sup>
 - Sadly time complexity is n square :(
 - There is a person who tried to prove n<sup>2</sup>-conjecture.
-- **n<sup>2</sup>-conjecture** : Any algorithm that multiplies 2 n-bit integers must take &Omega;(n<sup>2</sup>-conjecture) steps
+- **n<sup>2</sup>-conjecture** : Any algorithm that multiplies 2 n-bit integers must take &Omega;(n<sup>2</sup>-conjecture) Kolmogorov
+- **Kolmogorov** believe n<sup>2</sup>-conjecture and tried proving it
+- **Karastuba** has given an idea which makes n-bit multiplication as n<sup>log<sub>2</sub>3</sup> (i.e n<sup>1.58</sup>)
+- (a+b).(c+d)-ac-bd = bc+ad
+- a+b and c+d can be having more bits than n.So to remove this confusion we can also do : `ac+bd-(a-b)(c-d)` (As it is subtraction number of bits won't increase.
+- Here multiply only once and add/sub takes only O(n) time, since we already calculate ac,bd we will do 3 multiplications(reduced by one)
+- Hence the new recurrence looks like
+  ```
+      T(n) = 3T(n/2)+ O(n)
+  ```
+- This onl solving gives `n<sup>log<sub>2</sub>3</sup>`
+- This multiplication of 2 n-bit numbers complexity is further decreased and currently with running time O(nlogn)
+
+## MASTERS THEORM
+  ![image](https://github.com/user-attachments/assets/4d620248-35dc-4f34-ad06-3de6a39761a6)
+- Masters theorem is generalization for the recurrence relations in the for `T(n) = aT(n/b) + f(n)`
+- 1st one takes f(n) steps
+- 2nd one takes af(n/b) steps
+- 3rd one take a<sup>2</sup>f(n/b<sup>2</sup>)
+- And this goes on...Adding all the terms f(n)+af(n/b)+a<sup>2</sup>f(n/b<sup>2</sup>)+...+a<sup>log<sub>b</sub>n</sup>f(n/b<sup>long<sub>b</sub>n</sup>)
+- This will give n<sup>log<sub>b</sub>s</sup> + ∑ a<sup>i</sup> f(n/b<sup>i</sup>)
+- This can be generalized
+- n<sup>log<sub>b</sub>a</sup> is known as **Watershed Function**.
+1. If f(n)=O(n<sup>log<sub>b</sub>a+ε</sup>)  -> T(n) = n<sup>log<sub>b</sub>a</sup>      
+2. If f(n)=0(n<sup>log<sub>b</sub>a</sup>log<sup>k</sup>) ->T(n) = n<sup>log<sub>b</sub>a</sup>log<sup>k+1</sup>    
+3. If f(n)=&Omega;(n<sup>log<sub>b</sub>a-ε</sup>)  -> T(n) = f(n)
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
